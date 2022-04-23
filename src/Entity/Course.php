@@ -24,6 +24,9 @@ class Course
     #[ORM\ManyToMany(targetEntity: Student::class, mappedBy: 'courses')]
     private $students;
 
+    #[ORM\ManyToOne(targetEntity: Major::class, inversedBy: 'courses')]
+    private $major;
+
     public function __construct()
     {
         $this->teachers = new ArrayCollection();
@@ -97,6 +100,18 @@ class Course
         if ($this->students->removeElement($student)) {
             $student->removeCourse($this);
         }
+
+        return $this;
+    }
+
+    public function getMajor(): ?Major
+    {
+        return $this->major;
+    }
+
+    public function setMajor(?Major $major): self
+    {
+        $this->major = $major;
 
         return $this;
     }

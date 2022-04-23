@@ -27,9 +27,13 @@ class Major
     #[ORM\OneToMany(mappedBy: 'major', targetEntity: Student::class)]
     private $students;
 
+    #[ORM\OneToMany(mappedBy: 'major', targetEntity: Course::class)]
+    private $courses;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,25 +85,34 @@ class Major
         return $this->students;
     }
 
-    public function addStudent(Student $student): self
+    /**
+     * @return Collection<int, Course>
+     */
+    public function getCourses(): Collection
     {
-        if (!$this->students->contains($student)) {
-            $this->students[] = $student;
-            $student->setMajor($this);
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+            $course->setMajor($this);
         }
 
         return $this;
     }
 
-    public function removeStudent(Student $student): self
+    public function removeCourse(Course $course): self
     {
-        if ($this->students->removeElement($student)) {
+        if ($this->courses->removeElement($course)) {
             // set the owning side to null (unless already changed)
-            if ($student->getMajor() === $this) {
-                $student->setMajor(null);
+            if ($course->getMajor() === $this) {
+                $course->setMajor(null);
             }
         }
 
         return $this;
     }
+
 }
