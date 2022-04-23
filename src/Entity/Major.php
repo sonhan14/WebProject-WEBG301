@@ -24,15 +24,11 @@ class Major
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\OneToMany(mappedBy: 'major', targetEntity: Student::class)]
-    private $students;
-
     #[ORM\OneToMany(mappedBy: 'major', targetEntity: Course::class)]
     private $courses;
 
     public function __construct()
     {
-        $this->students = new ArrayCollection();
         $this->courses = new ArrayCollection();
     }
 
@@ -75,14 +71,6 @@ class Major
         $this->image = $image;
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Student>
-     */
-    public function getStudents(): Collection
-    {
-        return $this->students;
     }
 
     /**

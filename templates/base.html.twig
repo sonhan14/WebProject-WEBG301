@@ -55,7 +55,16 @@
 
 			</nav>
 		{% endblock %}
+	{% block flash %}
+		<div class="container-md col-md-6 text-center">
+			{% for message in app.session.flashBag.get('Success') %}
+				<p class="alert alert-success">{{ message }}</p>
+			{% endfor %}
+			{% for message in app.session.flashBag.get('Error') %}
+				<p class="alert alert-danger">{{ message }}</p>
+			{% endfor %}
+		</div>
+	{% endblock %}
 
-		{% block body %}{% endblock %}
-	</body>
-</html>
+	{% block body %}{% endblock %}
+</body></html>

@@ -27,6 +27,12 @@ class Course
     #[ORM\ManyToOne(targetEntity: Major::class, inversedBy: 'courses')]
     private $major;
 
+    #[ORM\Column(type: 'string', length: 555)]
+    private $description;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function __construct()
     {
         $this->teachers = new ArrayCollection();
@@ -112,6 +118,30 @@ class Course
     public function setMajor(?Major $major): self
     {
         $this->major = $major;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

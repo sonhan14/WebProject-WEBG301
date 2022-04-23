@@ -13,6 +13,7 @@ class CourseFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $course = new Course();
             $course->setName('Course ' . $i);
+            $course->setDescription('Description ' . $i);
             $manager->persist($course);
         }
         $manager->flush();
