@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Course;
 use App\Form\CourseType;
+use App\Repository\CourseRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -101,5 +102,15 @@ class CourseController extends AbstractController
                 'courseForm' => $form
             ]
         );
+    }
+
+    #[Route('/search', name: 'search_course')]
+    public function searchCourse(Request $request, CourseRepository $courseRepository)
+    {
+        $keyword = $request->get('keyword');
+        $courses = $courseRepository->search($keyword);
+        return $this->render('course/index.html.twig', [
+            'courses' => $courses,
+        ]);
     }
 }

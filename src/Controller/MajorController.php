@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Major;
 use App\Form\MajorType;
+use App\Repository\MajorRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,5 +101,26 @@ class MajorController extends AbstractController
                 'majorForm' => $form
             ]
         );
+    }
+
+    #[Route('/search', name: 'search_major')]
+    public function majorSearch(Request $request, MajorRepository $majorRepository)
+    {
+        $keyword = $request->get('keyword');
+        $majors = $majorRepository->search($keyword);
+        return $this->render('major/index.html.twig', [
+            'majors' => $majors,
+        ]);
+
+    }
+
+    #[Route('/viewCourse/{id}', name: 'view_course_major')]
+    public function viewCourse($id, ManagerRegistry $managerRegistry)
+    {
+        $major = $managerRegistry->getRepository(Major::class)->find($id);
+        $courses = $major->getCourses();
+        return $this->render('course/index.html.twig', [
+            'courses' => $courses,
+        ]);
     }
 }

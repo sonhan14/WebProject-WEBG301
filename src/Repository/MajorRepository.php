@@ -65,14 +65,17 @@ class MajorRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Major
+     * @return Major[]
+    */
+    public function search ($keyword)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('m.name LIKE :keyword')
+            ->setParameter('keyword','%'.$keyword.'%')
+            ->orderBy('m.name', 'ASC')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
+    
 }
