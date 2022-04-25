@@ -130,4 +130,17 @@ class Teacher
 
         return $this;
     }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar)
+    {
+        if($avatar != null) {
+            $this->avatar = $avatar;
+        }
+        return $this;
+    }
 }
