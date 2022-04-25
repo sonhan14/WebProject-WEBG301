@@ -13,10 +13,13 @@ class StudentFixtures extends Fixture
         $student = new Student();
         $student->setName('John Doe');
         $student->setBirthDay(new \DateTime('now'));
-        $student->setEmail('niansid@gmail.com');
-        $student->setPhone('+380991234567');
+        $student->setEmail('tuna@gmail.com');
+        $student->setPhone('+123456789');
+        $student->setStudentId('123456789');
+        $student->setImage('https://via.placeholder.com/150');
         $manager->persist($student);
-
         $manager->flush();
     }
+
+    
 }

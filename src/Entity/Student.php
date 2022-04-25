@@ -34,6 +34,12 @@ class Student
     #[ORM\ManyToMany(targetEntity: Course::class, inversedBy: 'students')]
     private $courses;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $StudentId;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function __construct()
     {
         $this->grades = new ArrayCollection();
@@ -81,6 +87,7 @@ class Student
         return $this;
     }
 
+    
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -144,6 +151,30 @@ class Student
     public function removeCourse(Course $course): self
     {
         $this->courses->removeElement($course);
+
+        return $this;
+    }
+
+    public function getStudentId(): ?string
+    {
+        return $this->StudentId;
+    }
+
+    public function setStudentId(string $StudentId): self
+    {
+        $this->StudentId = $StudentId;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
