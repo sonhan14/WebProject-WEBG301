@@ -40,11 +40,6 @@ class TeacherType extends AbstractType
         ;
     }
 
-    #[Route('/delete_{id}', name: 'delete_teacher')]
-    public function teacherDelete($id, ManagerRegistry $managerRegistry)
-    {
-        $teacher = $this->getDoctrine()->getRe
-    }
 
 
 
