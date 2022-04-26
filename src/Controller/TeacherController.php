@@ -99,16 +99,19 @@ class TeacherController extends AbstractController
         $teacher = $this->getDoctrine()->getRepository(Teacher::class)->find($id);
         if (!$teacher) {
             $this->addFlash("Error", "Undefined teacher!");
-            return $this->redirectToRoute("teacher");
+           
         }
-        
+        else if(count($teacher->getFeedBacks())!=0){
+            $this->addFlash("Error", "Khong the xoa giao vien");
+        }
         else {
         $manager = $managerRegistry->getManager();
         $manager->remove($teacher);
         $manager->flush();
         $this->addFlash("Success", "Teacher has been deleted!");
-        return $this->redirectToRoute("teacher");
+        
         }
+        return $this->redirectToRoute("teacher");
     }
     #[Route('/edit/{id}', name: 'edit_teacher')]
     public function teacherEdit($id, Request $request, ManagerRegistry $managerRegistry)

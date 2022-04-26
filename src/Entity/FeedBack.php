@@ -16,7 +16,7 @@ class FeedBack
     #[ORM\Column(type: 'string', length: 255)]
     private $feedBack;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime')] 
     private $receivedAt;
 
 
