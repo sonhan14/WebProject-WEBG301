@@ -26,16 +26,17 @@ class TeacherType extends AbstractType
             ])
             ->add('birthDay', DateType::class,
             [
-                'label' => 'Birthday',
+                'label' => 'Birthday of teacher',
                 'required' => true,
                 'widget' => 'single_text'
             ])
             ->add('email', TextType::class,
             [
-                'label' => 'email',
+                'label' => 'Email of teacher',
                 'required' => true,
                 
             ])
+            
             ->add('Save',SubmitType::class)
         ;
     }

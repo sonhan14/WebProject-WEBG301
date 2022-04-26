@@ -19,6 +19,7 @@ class FeedBack
     #[ORM\Column(type: 'datetime')]
     private $receivedAt;
 
+
     #[ORM\ManyToOne(targetEntity: Teacher::class, inversedBy: 'feedBacks')]
     private $teacher;
 
