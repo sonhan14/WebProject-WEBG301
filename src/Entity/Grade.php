@@ -19,8 +19,11 @@ class Grade
     #[ORM\ManyToOne(targetEntity: Student::class, inversedBy: 'grades')]
     private $student;
 
-    #[ORM\Column(type: 'date')]
-    private $receivedAt;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $studentName;
+
+
+    
 
     public function getId(): ?int
     {
@@ -39,27 +42,20 @@ class Grade
         return $this;
     }
 
-    public function getStudent(): ?Student
+    public function getStudentName(): ?string
     {
-        return $this->student;
+        return $this->studentName;
     }
 
-    public function setStudent(?Student $student): self
+    public function setStudentName(string $studentName): self
     {
-        $this->student = $student;
+        $this->studentName = $studentName;
 
         return $this;
     }
 
-    public function getReceivedAt(): ?\DateTimeInterface
-    {
-        return $this->receivedAt;
+
+
+
     }
 
-    public function setReceivedAt(\DateTimeInterface $receivedAt): self
-    {
-        $this->receivedAt = $receivedAt;
-
-        return $this;
-    }
-}

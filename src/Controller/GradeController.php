@@ -3,15 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Grade;
+use App\Form\GradeType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+ #[Route('/grade')]
 class GradeController extends AbstractController
 {
-    #[Route('/grade', name: 'app_grade')]
+    #[Route('/', name: 'app_grade')]
     public function index(): Response
     {
         $grades = $this->getDoctrine()->getRepository(Grade::class)->findAll();
@@ -50,13 +51,13 @@ class GradeController extends AbstractController
             $manager->persist($grade);
             $manager->flush();
             $this->addFlash("Success", "Grade added successfully !");
-            return $this->redirectToRoute("app_grade");
+            return $this->redirectToRoute("app_grade"); 
         }
 
         return $this->renderForm(
             'grade/add.html.twig',
             [
-                'form' => $form->createView(),
+                'gradeForm' => $form
             ]
         );
     }
@@ -76,4 +77,29 @@ class GradeController extends AbstractController
         return $this->redirectToRoute("app_grade");
     }
     
+    #[Route('/edit/{id}', name: 'edit_grade')]
+    public function editGrade($id, Request $request, ManagerRegistry $managerRegistry)
+    {
+        $grade = $this->getDoctrine()->getRepository(Grade::class)->find($id);
+        if (!$grade) {
+            $this->addFlash("Error", "Grade not found !");
+            return $this->redirectToRoute("app_grade");
+        }
+        $form = $this->createForm(GradeType::class, $grade);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $managerRegistry->getManager();
+            $manager->persist($grade);
+            $manager->flush();
+            $this->addFlash("Success", "Grade updated successfully !");
+            return $this->redirectToRoute("app_grade");
+        }
+
+        return $this->renderForm(
+            'grade/edit.html.twig',
+            [
+                'gradeForm' => $form
+            ]
+        );
+    }
 }
