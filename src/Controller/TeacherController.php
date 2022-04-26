@@ -101,9 +101,7 @@ class TeacherController extends AbstractController
             $this->addFlash("Error", "Undefined teacher!");
             return $this->redirectToRoute("teacher");
         }
-        elseif (count($teacher->getFeedback()) > 0) {
-            $this->addFlash("Error", "Teacher cannot be deleted because has some feedback !");
-        }
+        
         else {
         $manager = $managerRegistry->getManager();
         $manager->remove($teacher);

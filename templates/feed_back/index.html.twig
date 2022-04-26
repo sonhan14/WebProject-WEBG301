@@ -18,13 +18,13 @@
         {% for feedback in feedback %}
             <div class="col-md-4">
                 <div class="card mb-4">
-                    {# <img src="{{ course.image }}" alt="{{ course.name }}" class="card-img-top"> #}
                     <div class="card-body">
-                        <h5 class="card-title">noi dung: {{ feedback.feedback }}</h5>
-                        <h5 class="card-title">giao vien: {{ feedback.teacher.name }}</h5>
-                        <h5 class="card-title">time: {{ feedback.receivedAt|date("m/d/Y") }}</h5>
+                        <h5 class="card-title">Teacher name: {{ feedback.teacher.name }}</h5>
+                        <h5 class="card-title">Feedback: {{ feedback.feedback }}</h5>
+                        {# <h5 class="card-title">Avatar:<img src="{{feedback.teacher.Avatar}}" width="100px" alt=" "> </h5> #}
+                        <h5 class="card-title">Date: {{ feedback.receivedAt|date("m/d/Y") }}</h5>
                         <div class="d-flex justify-content-between align-item-center">
-                            <a href="{{ path('feedback_detail', {'id': feedback.id})}}" class="btn btn-dark">View details</a>
+                            
                             <a href="{{ path('edit_feedback', {'id': feedback.id})}}" class="btn btn-dark">Edit</a>
                             <a href="{{ path('delete_feedback', {'id': feedback.id})}}" class="btn btn-dark"
                             onclick="return confirm('Do you want to delete this feedback ?');">Delete</a>
@@ -37,3 +37,4 @@
 </div>
 
 {% endblock %}
+

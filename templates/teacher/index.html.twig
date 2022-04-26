@@ -30,7 +30,7 @@
 						<td>
 							{{t.birthDay| date('d/m/Y')}}
 						</td>
-						{# <td>{{ t.feedBacks.feedBack }}</td> #}
+						{# <td>{{ t.feedback.feedback }}</td> #}
 						<td>
 							<a class="btn btn-warning" href="{{ path('edit_teacher', {'id': t.id})}}">Edit</a>
 							<a class="btn btn-danger" href="{{ path('delete_teacher', {'id': t.id})}}" onclick="return confirm('Are you sure to delete this student ?')">Delete</a>
