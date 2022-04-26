@@ -11,8 +11,8 @@ class GradeFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $grade = new Grade();
-        $grade->setName('Grade 1');
-        $grade->setDescription('This is grade 1');
+        $grade->setstudentName('Anh Tu');
+        $grade->setGrade(5.0);
         $manager->persist($grade);
         $manager->flush();
     }

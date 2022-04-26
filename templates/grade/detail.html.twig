@@ -1,13 +1,9 @@
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Grade{% endblock %}
-
 {% block body %}
-<div class="container">
-		<h3 class="text-success text-center">Grade</h3>
-		<a class="btn btn-outline-success mt-2" href="{{ path('add_grade') }}">Add Student Grade</a>
+	<div class="container">
+		<h3 class="text-success text-center text-capitalize">Student Grade Detail</h3>
+		<a class="btn btn-outline-success mt-2" href="{{ path('app_grade') }}">Student Grade List</a>
 		<table class="table table-striped text-center mt-2">
 			<thead>
 				<tr>
@@ -18,14 +14,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for grade in grades %}
-					<tr>
+				<tr>
+					
+					<tr>    
 						<td>{{ grade.id }}</td>
-						<td>
-							<a class="text-info" href="{{ path('grade_detail', {'id': grade.id}) }}">
-								{{ grade.studentName}}
-							</a>
-						</td>
+						<td>{{ grade.studentName }}</td>
 						<td>{{ grade.grade }}</td>
 						<td>
 							<a class="btn btn-info" href="{{ path('edit_grade', {'id': grade.id}) }}">EDIT</a>
@@ -33,10 +26,9 @@
 							onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
 						</td>
 				</tr>
-				{% endfor %}
+               
+				
 			</tbody>
 		</table>
 	</div>
 {% endblock %}
-
-
