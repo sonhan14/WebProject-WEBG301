@@ -10,11 +10,8 @@
 					<th>Name</th>
 					<th>Image</th>
 					<th>Birthday</th>
-					
 					<th>Email</th>
-					<th>Major</th>
 					<th>StudentID</th>
-					<th>Classroom</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -22,26 +19,14 @@
 				<tr>
 					<td>{{ student.name }}</td>
 					<td>
-						<img src="{{ asset('images/student/'~student.image )}}" alt="avatar" width="100" height="120">
+						<img src="{{student.image}}" alt="avatar" width="100" height="120">
 					</td>
 					<td>{{ student.birthday|date('d/m/Y') }}</td>
 					
 					<td>{{ student.email }}</td>
-					{# <td>
-							<a href="{{ path('category_detail', {'id': student.major.id }) }}">
-								{{ student.major.name }}
-							</a>
-					</td> #}
+	
 					<td>{{ student.studentId }}</td>
-					{# <td>
-						{% for r in student.classrooms %}
-							<a href="{{ path('classroom_detail', {'id': r.id }) }}">
-								{{ r.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td> #}
-				
+					
 					<td>
 						<a class="btn btn-info" href="#">EDIT</a>
 						<a class="btn btn-danger" href="#"
