@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\FeedBack;
 use App\Entity\Teacher;
 use App\Form\TeacherType;
 use App\Repository\TeacherRepository;
@@ -100,6 +101,9 @@ class TeacherController extends AbstractController
             $this->addFlash("Error", "Undefined teacher!");
             return $this->redirectToRoute("teacher");
         }
+        elseif (count($teacher->getFeedback()) > 0) {
+            $this->addFlash("Error", "Teacher cannot be deleted because has some feedback !");
+        }
         else {
         $manager = $managerRegistry->getManager();
         $manager->remove($teacher);
@@ -156,6 +160,16 @@ class TeacherController extends AbstractController
                 'teacherForm' => $form
             ]
         );
+    }
+
+    #[Route('/viewFeedback/{id}', name: 'viewfeedback')]
+    public function viewFeedback($id, ManagerRegistry $managerRegistry)
+    {
+        $teacher = $managerRegistry->getRepository(FeedBack::class)->find($id);
+        $feedBack = $teacher->getFeedback();
+        return $this->render('feed_back/index.html.twig', [
+            'feedback' => $feedBack,
+        ]);
     }
 
     

@@ -11,9 +11,10 @@
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Avatar</th>
 					<th>Email</th>
 					<th>Birthday</th>
-					<th>Feedback</th>
+					{# <th>Feedback</th> #}
 					<th>Menu</th>
 				
 				</tr>
@@ -21,8 +22,18 @@
 			<tbody>
 				<tr style="font-family: Segoe UI; font-size: 16px;">
 					<td>{{ teacher.name }}</td>
+					<td><img src="{{teacher.Avatar}}" width="100px" alt=" "></td>
 					<td>{{ teacher.email }}</td>
 					<td>{{ teacher.birthday|date('d/m/Y')}}</td>
+					
+					{# <td>
+						{% if teacher.feedBacks != null %}
+							<a class="text text-success" href="{{ path('feedback_detail' , {'id' : teacher.feedBacks.id})}}">
+							{{ teacher.feedBacks.feedBack }}
+							</a>             
+						{% endif %}
+					
+					</td> #}
 					<td></td>
 					<td class="">
 						<a class="btn btn-warning" href="{{ path('edit_teacher', {'id': teacher.id}) }}">Edit</a>

@@ -5,19 +5,6 @@
 {% block body %}
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="container">
     <h1 class="text-success text-center mb-2">Feedbacks</h1>
     <center><a class="btn btn-primary waves-effect waves-light mb-5" href="{{ path('add_feedback') }}">Add Feedback</a></center>
@@ -33,8 +20,9 @@
                 <div class="card mb-4">
                     {# <img src="{{ course.image }}" alt="{{ course.name }}" class="card-img-top"> #}
                     <div class="card-body">
-                        <h5 class="card-title">{{ feedback.feedback }}</h5>
-                        
+                        <h5 class="card-title">noi dung: {{ feedback.feedback }}</h5>
+                        <h5 class="card-title">giao vien: {{ feedback.teacher.name }}</h5>
+                        <h5 class="card-title">time: {{ feedback.receivedAt|date("m/d/Y") }}</h5>
                         <div class="d-flex justify-content-between align-item-center">
                             <a href="{{ path('feedback_detail', {'id': feedback.id})}}" class="btn btn-dark">View details</a>
                             <a href="{{ path('edit_feedback', {'id': feedback.id})}}" class="btn btn-dark">Edit</a>

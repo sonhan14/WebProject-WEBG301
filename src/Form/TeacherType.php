@@ -36,6 +36,10 @@ class TeacherType extends AbstractType
                 'required' => true,
                 
             ])
+            ->add('avatar', TextType::class, [
+                'label' => 'Enter the teacher avatar',
+                'required' => true,
+            ])
             
             ->add('Save',SubmitType::class)
         ;

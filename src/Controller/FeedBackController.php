@@ -73,7 +73,7 @@ class FeedBackController extends AbstractController
         $feedback = $this->getDoctrine()->getRepository(FeedBack::class)->find($id);
         if (!$feedback){
             $this->addFlash("Error", "Feedback not found !");
-            return $this->redirectToRoute("feedback");
+            return $this->redirectToRoute("app_feed_back");
         }
         else {
             $manager = $managerRegistry->getManager();
@@ -81,7 +81,7 @@ class FeedBackController extends AbstractController
             $manager->flush();
             $this->addFlash("Success", "Feedback deleted successfully !");
         }
-        return $this->redirectToRoute("feedback");
+        return $this->redirectToRoute("app_feed_back");
     }
 
     #[Route('/edit/{id}', name: 'edit_feedback')]
@@ -95,7 +95,7 @@ class FeedBackController extends AbstractController
             $manager->persist($feedback);
             $manager->flush();
             $this->addFlash("Success", "Feedback edited successfully !");
-            return $this->redirectToRoute("feedback");
+            return $this->redirectToRoute("app_feed_back");
         }
         return $this->renderForm(
             'feed_back/edit.html.twig',

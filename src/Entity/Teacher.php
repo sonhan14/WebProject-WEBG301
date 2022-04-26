@@ -30,6 +30,10 @@ class Teacher
     #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: FeedBack::class)]
     private $feedBacks;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $Avatar;
+
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -133,14 +137,16 @@ class Teacher
 
     public function getAvatar()
     {
-        return $this->avatar;
+        return $this->Avatar;
     }
 
     public function setAvatar($avatar)
     {
         if($avatar != null) {
-            $this->avatar = $avatar;
+            $this->Avatar = $avatar;
         }
         return $this;
     }
+
+    
 }
