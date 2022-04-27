@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/student')]
 class StudentController extends AbstractController
 {
-    #[Route('/student', name: 'student')]
+    #[Route('/', name: 'student')]
     
     public function index(): Response
     {
