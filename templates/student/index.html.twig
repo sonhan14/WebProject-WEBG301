@@ -19,9 +19,11 @@
 					<tr>
 						<td>{{ student.id }}</td>
 						<td>
+						{% if student.name != null %}
 							<a class="text-info" href="{{ path('student_detail', {'id': student.id}) }}">
 								{{ student.name }}
 							</a>
+						{% endif %}
 						</td>
 						<td>
 							<a class="btn btn-info" href="{{ path('edit_student', {'id': student.id}) }}">EDIT</a>
