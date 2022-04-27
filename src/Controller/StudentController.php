@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 #[Route('/student')]
 class StudentController extends AbstractController
 {
@@ -28,7 +27,7 @@ class StudentController extends AbstractController
         ]);
     }
 
-    #[Route('/student/detail/{id}', name: 'student_detail')]
+    #[Route('/detail/{id}', name: 'student_detail')]
     public function show($id)
     {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
@@ -41,7 +40,7 @@ class StudentController extends AbstractController
         ]);
     }
 
-    #[Route('/student/add', name: 'add_student')]
+    #[Route('/add', name: 'add_student')]
     public function studentAdd(Request $request, ManagerRegistry $managerRegistry)
     {
         $student = new Student();
@@ -64,7 +63,7 @@ class StudentController extends AbstractController
         );
     }
 
-    #[Route('/student/delete/{id}', name: 'delete_student')]
+    #[Route('/delete/{id}', name: 'delete_student')]
     public function studentDelete($id, ManagerRegistry $managerRegistry)
     {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
@@ -80,7 +79,7 @@ class StudentController extends AbstractController
         
 }
 
-    #[Route('/student/edit/{id}', name: 'edit_student')]
+    #[Route('/edit/{id}', name: 'edit_student')]
     public function studentEdit($id, ManagerRegistry $managerRegistry)
     {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
