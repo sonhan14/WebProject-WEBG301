@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\GradeRepository;
+use App\Entity\Student;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GradeRepository;
 
 #[ORM\Entity(repositoryClass: GradeRepository::class)]
 class Grade
@@ -19,8 +20,9 @@ class Grade
     #[ORM\ManyToOne(targetEntity: Student::class, inversedBy: 'grades')]
     private $student;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $studentName;
+
+    #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'grades')]
+    private $course;
 
 
     
@@ -42,14 +44,27 @@ class Grade
         return $this;
     }
 
-    public function getStudentName(): ?string
+
+    public function getCourse(): ?Course
     {
-        return $this->studentName;
+        return $this->course;
     }
 
-    public function setStudentName(string $studentName): self
+    public function setCourse(?Course $course): self
     {
-        $this->studentName = $studentName;
+        $this->course = $course;
+
+        return $this;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): self
+    {
+        $this->student = $student;
 
         return $this;
     }

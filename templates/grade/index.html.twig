@@ -22,9 +22,11 @@
 					<tr>
 						<td>{{ grade.id }}</td>
 						<td>
-							<a class="text-info" href="{{ path('grade_detail', {'id': grade.id}) }}">
-								{{ grade.studentName}}
+						{% if grade.student != null %}
+							<a class="text-info" href="{{ path('student_detail', {'id': grade.student.id}) }}">
+								{{ grade.student.name }}
 							</a>
+						{% endif %}
 						</td>
 						<td>{{ grade.grade }}</td>
 						<td>

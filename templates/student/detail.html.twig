@@ -12,6 +12,7 @@
 					<th>Birthday</th>
 					<th>Email</th>
 					<th>StudentID</th>
+					<th>Grade</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -26,6 +27,10 @@
 					<td>{{ student.email }}</td>
 	
 					<td>{{ student.studentId }}</td>
+					{% for grade in student.grades %}
+						<td>{{ grade.grade }}</td>
+					{% endfor %}
+
 					
 					<td>
 						<a class="btn btn-info" href="#">EDIT</a>
