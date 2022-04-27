@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-		<h3 class="text-success text-center">Grade</h3>
+		<h3 class="text-success text-center">List Grade</h3>
 		<a class="btn btn-outline-success mt-2" href="{{ path('add_grade') }}">Add Student Grade</a>
 		<table class="table table-striped text-center mt-2">
 			<thead>
@@ -14,6 +14,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Grade</th>
+					<td>View Detail Student Grade</td>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -30,10 +31,14 @@
 						</td>
 						<td>{{ grade.grade }}</td>
 						<td>
+							<a class="btn btn-success" href="{{ path('grade_detail', {'id': grade.id}) }}">View</a>
+						</td>
+						<td>
 							<a class="btn btn-info" href="{{ path('edit_grade', {'id': grade.id}) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('delete_grade', {'id': grade.id}) }}" 
 							onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
 						</td>
+						
 				</tr>
 				{% endfor %}
 			</tbody>

@@ -80,7 +80,7 @@ class StudentController extends AbstractController
 }
 
     #[Route('/edit/{id}', name: 'edit_student')]
-    public function studentEdit($id, ManagerRegistry $managerRegistry)
+    public function studentEdit($id, Request $request, ManagerRegistry $managerRegistry)
     {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
         if (!$student){
@@ -88,6 +88,14 @@ class StudentController extends AbstractController
             return $this->redirectToRoute("student");
         }
         $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $managerRegistry->getManager();
+            $manager->persist($student);
+            $manager->flush();
+            $this->addFlash("Success", "Student edited successfully !");
+            return $this->redirectToRoute("student");
+        }
         return $this->renderForm(
             'student/edit.html.twig',
             [
