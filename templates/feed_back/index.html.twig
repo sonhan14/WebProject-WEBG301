@@ -1,20 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Course Index{% endblock %}
+{% block title %}Feedback List{% endblock %}
 
 {% block body %}
     
 
     <div class="container">
-    <h1 class="text-success text-center mb-2">Feedbacks</h1>
-    <center><a class="btn btn-primary waves-effect waves-light mb-5" href="{{ path('add_feedback') }}">Add Feedback</a></center>
+    {# <h1 class="text-success text-center mb-2">Feedbacks</h1> #}
+    {# <h1 class="text-success text-center mb-2">Feedback List</h1> #}
+	<h1 class="text-success text-center">Feedback List</h1>
+
+    {# <center><a class="btn btn-primary waves-effect waves-light mb-5" href="{{ path('add_feedback') }}">Add Feedback</a></center> #}
+	<center><a class="btn btn-info text-center mt-2" href="{{ path('add_feedback') }}" style="font-size: 25px;">Add Feedback</a><center>
+    
     <center>
     {# <form action="{{ path('search_course') }}" method="post" class="form-group">
         <input type="search" name="keyword" id="">
         <input type="submit" value="Search">
     </form> #}
     </center>
-    <div class="row">
+
+    <table class="table table-striped text-center mt-2" style="width: 600px">
+			<thead >
+				<tr >
+                    <th>Date</th>
+					<th width="30%">Name</th>
+					<th width="40%">Feedback</th>
+					
+					{# <th>Birthday</th> #}
+					{# <th>Feedback</th> #}
+					<th width="50%">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for feedback in feedback %}
+					<tr style="font-family: Segoe UI; font-size: 16px;">
+						<td>{{ feedback.receivedAt|date("m/d/Y") }}</td>
+						<td>{{ feedback.teacher.name }}</td>
+						<td>{{ feedback.feedback }}</td>
+						<td width="100%">
+							<a class="btn btn-warning" href="{{ path('edit_feedback', {'id': feedback.id})}}">Edit</a>
+							<a class="btn btn-danger" href="{{ path('delete_feedback', {'id': feedback.id})}}" onclick="return confirm('Are you sure to delete this student ?')">Delete</a>
+						</td>
+						
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+
+    {# <div class="row">
         {% for feedback in feedback %}
             <div class="col-md-4">
                 <div class="card mb-4">
@@ -22,7 +58,7 @@
                         <h5 class="card-title">Teacher name: {{ feedback.teacher.name }}</h5>
                         <h5 class="card-title">Feedback: {{ feedback.feedback }}</h5>
                         {# <h5 class="card-title">Avatar:<img src="{{feedback.teacher.Avatar}}" width="100px" alt=" "> </h5> #}
-                        <h5 class="card-title">Date: {{ feedback.receivedAt|date("m/d/Y") }}</h5>
+                        {# <h5 class="card-title">Date: {{ feedback.receivedAt|date("m/d/Y") }}</h5>
                         <div class="d-flex justify-content-between align-item-center">
                             
                             <a href="{{ path('edit_feedback', {'id': feedback.id})}}" class="btn btn-dark">Edit</a>
@@ -33,7 +69,7 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+    </div>  #}
 </div>
 
 {% endblock %}

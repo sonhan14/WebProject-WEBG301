@@ -16,7 +16,7 @@
 					<th>Name</th>
 					<th>Avatar</th>
 					<th>Birthday</th>
-					<th>Feedback</th>
+					{# <th>Feedback</th> #}
 					<th width="100%">Action</th>
 				</tr>
 			</thead>
@@ -30,15 +30,8 @@
 						<td>
 							{{t.birthDay| date('d/m/Y')}}
 						</td>
-						<td>{% for f in  t.feedBacks %} 
-						{# feedBacks này là thuộc tính trong class teacher #}
-						{# t.feedBacks gọi đến thuoc tinh feedBacks trong teacher no la 1 container #}
-						{# for f in ... la duyet lan luot t.feedBacks #}
-						{# f.feedback la goi thuoc tinh feedback cua object FeedBack #}
-							<p>{{f.feedback}}</p> 
-							{# feedback này thuộc tính trong class FeedBack #}
-							{% endfor %}
-						</td>
+						
+						
 						<td>
 							<a class="btn btn-warning" href="{{ path('edit_teacher', {'id': t.id})}}">Edit</a>
 							<a class="btn btn-danger" href="{{ path('delete_teacher', {'id': t.id})}}" onclick="return confirm('Are you sure to delete this student ?')">Delete</a>
@@ -50,3 +43,12 @@
 		</table>
 	</div>
 {% endblock %}
+					{# <td>{% for f in  t.feedBacks %}  #}
+						{# feedBacks này là thuộc tính trong class teacher #}
+						{# t.feedBacks gọi đến thuoc tinh feedBacks trong teacher no la 1 container #}
+						{# for f in ... la duyet lan luot t.feedBacks #}
+						{# f.feedback la goi thuoc tinh feedback cua object FeedBack #}
+							{# <p>{{f.feedback}}</p>  #}
+							{# feedback này thuộc tính trong class FeedBack #}
+							{# {% endfor %} #}
+						{# </td> #}

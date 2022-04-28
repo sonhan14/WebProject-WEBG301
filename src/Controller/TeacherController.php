@@ -24,6 +24,7 @@ class TeacherController extends AbstractController
     #[Route('/', name: 'teacher')]
     public function index(): Response
     {
+        //lấy dữ liệu từ bảng Teacher trong db
         $teachers =$this->getDoctrine()->getRepository(Teacher::class)->findAll();
         if (!$teachers) {
             $this->addFlash("Error", "No teachers found in the database.");
@@ -99,7 +100,6 @@ class TeacherController extends AbstractController
         $teacher = $this->getDoctrine()->getRepository(Teacher::class)->find($id);
         if (!$teacher) {
             $this->addFlash("Error", "Undefined teacher!");
-           
         }
         else if(count($teacher->getFeedBacks())!=0){
             $this->addFlash("Error", "Khong the xoa giao vien");
