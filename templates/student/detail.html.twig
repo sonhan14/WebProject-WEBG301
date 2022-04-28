@@ -18,7 +18,9 @@
 			</thead>
 			<tbody>
 				<tr>
+					{% if student.name != null %}
 					<td>{{ student.name }}</td>
+					{% endif %}
 					<td>
 						<img src="{{student.image}}" alt="avatar" width="100" height="120">
 					</td>
@@ -33,8 +35,8 @@
 
 					
 					<td>
-						<a class="btn btn-info" href="#">EDIT</a>
-						<a class="btn btn-danger" href="#"
+						<a class="btn btn-info" href="{{ path('edit_student', {'id': student.id}) }}">EDIT</a>
+						<a class="btn btn-warning" href="{{ path('delete_student', {'id': student.id}) }}" 
                   		onclick= "return confirm('Are you sure to delete this student ?')">DELETE</a>
 					</td>
 				</tr>
