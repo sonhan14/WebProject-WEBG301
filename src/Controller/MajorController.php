@@ -123,4 +123,6 @@ class MajorController extends AbstractController
             'courses' => $courses,
         ]);
     }
+
+    
 }

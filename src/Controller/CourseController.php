@@ -67,14 +67,12 @@ class CourseController extends AbstractController
     public function deleteCourse($id, ManagerRegistry $managerRegistry)
     {
         $course = $this->getDoctrine()->getRepository(Course::class)->find($id);
-        if (!$course){
+        if (!$course) {
             $this->addFlash("Error", "Course not found !");
             return $this->redirectToRoute("course");
-        }
-        elseif ($course->getStudents()->count() > 0) {
+        } elseif ($course->getStudents()->count() > 0) {
             $this->addFlash("Error", "Course cannot be deleted because it has students enrolled !");
-        }
-        else {
+        } else {
             $manager = $managerRegistry->getManager();
             $manager->remove($course);
             $manager->flush();
@@ -112,5 +110,18 @@ class CourseController extends AbstractController
         return $this->render('course/index.html.twig', [
             'courses' => $courses,
         ]);
+    }
+
+    #[Route('/asc', name: 'course_asc')]
+    public function sortAsc(CourseRepository $courseRepository, ManagerRegistry $registry)
+    {
+        $courses = $courseRepository->sortCourseAsc();
+        return $this->render(
+            "course/index.html.twig",
+            [
+                'courses' => $courses
+                
+            ]
+        );
     }
 }

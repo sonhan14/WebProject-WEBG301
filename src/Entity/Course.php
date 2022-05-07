@@ -36,6 +36,12 @@ class Course
     #[ORM\OneToMany(mappedBy: 'course', targetEntity: Grade::class)]
     private $grades;
 
+    #[ORM\Column(type: 'date')]
+    private $timeStart;
+
+    #[ORM\Column(type: 'date')]
+    private $timeEnd;
+
     public function __construct()
     {
         $this->teachers = new ArrayCollection();
@@ -176,6 +182,30 @@ class Course
                 $grade->setCourse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTimeStart(): ?\DateTimeInterface
+    {
+        return $this->timeStart;
+    }
+
+    public function setTimeStart(\DateTimeInterface $timeStart): self
+    {
+        $this->timeStart = $timeStart;
+
+        return $this;
+    }
+
+    public function getTimeEnd(): ?\DateTimeInterface
+    {
+        return $this->timeEnd;
+    }
+
+    public function setTimeEnd(\DateTimeInterface $timeEnd): self
+    {
+        $this->timeEnd = $timeEnd;
 
         return $this;
     }

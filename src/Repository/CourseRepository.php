@@ -50,18 +50,28 @@ class CourseRepository extends ServiceEntityRepository
     /*
      * @return Course[] 
     */
-    
-    public function search ($keyword)
+
+    public function search($keyword)
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.name LIKE :keyword')
-            ->setParameter('keyword','%'.$keyword.'%')
+            ->setParameter('keyword', '%' . $keyword . '%')
             ->orderBy('c.name', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    
+
+    /**
+     * @return Course[]  
+     */
+    public function sortCourseAsc()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Course

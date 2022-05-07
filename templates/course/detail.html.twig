@@ -16,7 +16,15 @@
 				<b>Description:
 				</b>
 				<p style="text-align: justify;" >{{ course.description }}</p> 
-                <br>
+
+				<b>Time Start:
+				</b>
+				<p style="text-align: justify;" >{{ course.timeStart|date("m/d/Y") }}</p> 
+
+				<b>Time End:
+				</b>
+				<p style="text-align: justify;" >{{ course.timeEnd|date("m/d/Y") }}</p> 
+
                 <div class="d-flex justify-content-between align-item-center mt-5">
                             <a href="#" class="btn btn-dark">View Courses</a>
                             <a href="#" class="btn btn-dark">View Students</a>

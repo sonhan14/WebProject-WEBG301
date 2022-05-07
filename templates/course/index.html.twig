@@ -7,6 +7,8 @@
     <h1 class="text-success text-center mb-2">Courses</h1>
     <center><a class="btn btn-primary waves-effect waves-light mb-5" href="{{ path('add_course') }}">Add Course</a></center>
     <center>
+    <center><a class="btn btn-primary waves-effect waves-light mb-5" href="{{ path('course_asc') }}">Sort Course</a></center>
+    <center>
     <form action="{{ path('search_course') }}" method="post" class="form-group">
         <input type="search" name="keyword" id="">
         <input type="submit" value="Search">
